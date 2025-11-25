@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PhishShield — Quick Scan</title>
+
+  <style>
+    :root{
+      --accent: #3fe07a;
+      --danger: #ff6b6b;
+      --muted: #b8e6d2;
+      --panel-bg: rgba(255,255,255,0.04);
+      --radius: 14px;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      color: #eaffef;
+      background: radial-gradient(circle at 20% 20%, #0e2440, #050a16 60%);
+      overflow-x: hidden;
+      height: 100vh;
+    }
+
+    .bg-glow {
+      position: fixed;
+      top: -20%;
+      left: -20%;
+      width: 140%;
+      height: 140%;
+      background: radial-gradient(circle at center,
+                 rgba(0, 255, 135, 0.18),
+                 transparent 50%);
+      animation: moveGlow 10s ease-in-out infinite alternate;
+      filter: blur(120px);
+      z-index: -2;
+    }
+
+    @keyframes moveGlow {
+      0%   { transform: translate(0px, 0px); }
+      50%  { transform: translate(80px, -60px); }
+      100% { transform: translate(-40px, 40px); }
+    }
+
+    .particle {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: rgba(80,255,160,0.5);
+      border-radius: 50%;
+      animation: floatUp 8s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+      20%{ opacity: 1; }
+      100%{ transform: translateY(-20vh) scale(1); opacity: 0; }
+    }
+
+    .wrap{
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:30px;
+    }
+
+    .panel{
+      width:700px;
+      max-width:95vw;
+      padding:32px;
+      border-radius:var(--radius);
+      background: var(--panel-bg);
+      border:1px solid rgba(255,255,255,0.05);
+      backdrop-filter: blur(12px);
+      box-shadow:0 20px 60px rgba(0,0,0,0.6);
+    }
+
+    .hero{text-align:center;}
+    .favicon{
+      width:70px;height:70px;border-radius:14px;
+      background:rgba(255,255,255,0.05);
+      margin:0 auto 12px;display:flex;align-items:center;justify-content:center;
+      font-size:28px;color:var(--accent);
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .hero h1{margin:0;font-size:26px;}
+    .hero p{margin:6px 0 0;color:var(--muted);font-size:14px;}
+
+    .input-row{
+      margin-top:22px;display:flex;gap:12px;
+    }
+
+    .url-input{
+      flex:1;padding:14px 16px;border-radius:10px;
+      background:rgba(255,255,255,0.06);color:#eaffef;
+      border:1px solid rgba(255,255,255,0.15);
+      font-size:15px;outline:none;
+    }
+    .url-input:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 12px rgba(63,224,122,0.4);
+    }
+
+    .btn{
+      padding:14px 18px;border-radius:10px;border:none;
+      background:linear-gradient(135deg,var(--accent),#1fc962);
+      box-shadow:0 8px 20px rgba(63,224,122,0.15);
+      font-weight:700;cursor:pointer;color:#00210c;
+    }
+
+    .status-card{
+      margin-top:26px;padding:20px;border-radius:12px;
+      display:flex;gap:16px;justify-content:center;align-items:center;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .status-badge{
+      width:60px;height:60px;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:22px;font-weight:800;
+    }
+
+    .trusted{
+      background:linear-gradient(180deg,#1b8f45,#0a5a2d);
+      color:#eaffeb;
+    }
+    .untrusted{
+      background:linear-gradient(180deg,#a63b3b,#8a1c1c);
+      color:#fff0f0;
+    }
+
+    .status-text{font-size:20px;margin:0;text-align:center;}
+
+    .actions{
+      margin-top:16px;display:flex;gap:12px;justify-content:center;
+    }
+
+    .btn.secondary{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.12);
+      color:var(--muted);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="bg-glow"></div>
+  <div class="particle" style="left:10%; animation-delay:0s;"></div>
+  <div class="particle" style="left:35%; animation-delay:1s;"></div>
+  <div class="particle" style="left:65%; animation-delay:2s;"></div>
+  <div class="particle" style="left:85%; animation-delay:3s;"></div>
+
+  <div class="wrap">
+    <div class="panel">
+
+      <div class="hero">
+        <div class="favicon" id="faviconPreview">🔒</div>
+        <h1>PhishShield URL Scanner</h1>
+        <p>Check if a website is <strong>Trusted</strong> or <strong>Untrusted</strong>.</p>
+      </div>
+
+      <form id="scanForm" method="post">
+        <div class="input-row">
+          <input class="url-input" id="url" name="url" placeholder="https://example.com/login" value="{{ url|default('') }}" required />
+          <button class="btn" type="submit">Scan</button>
+        </div>
+      </form>
+
+      {% if status %}
+      <div class="status-card">
+        <div class="status-badge {% if status == 'Trusted' %}trusted{% else %}untrusted{% endif %}">
+          {% if status == 'Trusted' %}✔{% else %}⚠{% endif %}
+        </div>
+        <p class="status-text">
+          {% if status == 'Trusted' %}Trusted Website{% else %}Untrusted Website{% endif %}
+        </p>
+      </div>
+
+      <div class="actions">
+        <button class="btn secondary" onclick="openUrl()" type="button">Open</button>
+        <button class="btn secondary" onclick="copyUrl()" type="button">Copy</button>
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+  <script>
+    function copyUrl(){
+      const v = document.getElementById("url").value.trim();
+      if(!v) return alert("No URL!");
+      navigator.clipboard.writeText(v);
+      alert("URL copied!");
+    }
+
+    function openUrl(){
+      const v = document.getElementById("url").value.trim();
+      if(!v) return alert("No URL!");
+      const final = v.startsWith("http") ? v : "http://" + v;
+      window.open(final, "_blank");
+    }
+
+    (function(){
+      const input = document.getElementById('url');
+      const box = document.getElementById('faviconPreview');
+
+      function update(){
+        const v = input.value.trim();
+        if(!v){ box.textContent="🔒"; return; }
+        try{
+          const host = (new URL(v.startsWith('http') ? v : "http://"+v)).hostname;
+          const fav = "https://www.google.com/s2/favicons?domain=" + host;
+          box.innerHTML = `<img src="${fav}" style="width:40px;height:40px;border-radius:8px;">`;
+        } catch(e){
+          box.textContent="🔒";
+        }
+      }
+      input.addEventListener("input", update);
+      update();
+    })();
+  </script>
+
+</body>
+</html>
