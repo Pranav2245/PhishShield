@@ -1,6 +1,7 @@
 🎯 PhishShield – AI-Powered Phishing URL Detection
 🔐 PhishShield is a lightweight, fast, and intelligent phishing-URL detection system.
-Paste any URL → instantly know whether it’s 🟢 Trusted or 🔴 Untrusted.
+Paste any URL → instantly know whether it’s 
+🟢 Trusted or 🔴 Untrusted.
 Built using Python, Flask, and a Machine Learning model (Random Forest) trained on URL features.
 
 🚀 Live Features
