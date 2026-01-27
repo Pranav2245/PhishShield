@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishShield</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">🛡️</div>
+            <div class="title">
+                <h1>PhishShield</h1>
+                <p>AI Phishing Detection</p>
+            </div>
+        </div>
+
+        <!-- Current Page Section -->
+        <div class="section">
+            <div class="section-label">Current Page</div>
+            <div class="current-url" id="currentUrl">Loading...</div>
+            <button class="btn primary" id="scanCurrentBtn">
+                <span class="btn-icon">🔍</span>
+                Scan This Page
+            </button>
+        </div>
+
+        <!-- Custom URL Section -->
+        <div class="section">
+            <div class="section-label">Check Any URL</div>
+            <div class="input-group">
+                <input type="text" id="customUrl" placeholder="https://example.com" />
+                <button class="btn icon-btn" id="scanCustomBtn">→</button>
+            </div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section" id="resultSection" style="display: none;">
+            <div class="result-card" id="resultCard">
+                <div class="result-icon" id="resultIcon">✓</div>
+                <div class="result-content">
+                    <div class="result-verdict" id="resultVerdict">Safe</div>
+                    <div class="result-score" id="resultScore">Risk Score: 0/100</div>
+                </div>
+            </div>
+
+            <!-- Risk Factors -->
+            <div class="risk-factors" id="riskFactors" style="display: none;">
+                <div class="section-label">Risk Factors</div>
+                <div id="riskList"></div>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div class="loading" id="loading" style="display: none;">
+            <div class="spinner"></div>
+            <span>Analyzing...</span>
+        </div>
+
+        <!-- Error State -->
+        <div class="error" id="error" style="display: none;">
+            <span id="errorMessage">Unable to connect to server</span>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <button class="btn secondary" id="scanLinksBtn">
+                <span class="btn-icon">🔗</span>
+                Scan All Links
+            </button>
+            <a href="http://localhost:5000" target="_blank" class="btn text-btn">Open Dashboard</a>
+        </div>
+
+        <!-- Server Status -->
+        <div class="server-status" id="serverStatus">
+            <span class="status-dot" id="statusDot"></span>
+            <span id="statusText">Checking server...</span>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

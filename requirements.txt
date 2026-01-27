@@ -1,5 +1,9 @@
 Flask
+flask-cors
 pandas
 scikit-learn
 joblib
 tldextract
+numpy
+nltk
+python-whois
