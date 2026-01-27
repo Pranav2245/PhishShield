@@ -7,3 +7,4 @@ tldextract
 numpy
 nltk
 python-whois
+gunicorn
