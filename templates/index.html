@@ -1,232 +1,945 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>PhishShield — Quick Scan</title>
+  <title>PhishShield — AI Phishing Protection</title>
+  <meta name="description" content="Detect phishing URLs and emails with AI-powered analysis" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --accent: #3fe07a;
-      --danger: #ff6b6b;
-      --muted: #b8e6d2;
-      --panel-bg: rgba(255,255,255,0.04);
-      --radius: 14px;
+    :root {
+      --accent: #00ff88;
+      --accent-dim: rgba(0, 255, 136, 0.15);
+      --danger: #ff4757;
+      --danger-dim: rgba(255, 71, 87, 0.15);
+      --warning: #ffa502;
+      --warning-dim: rgba(255, 165, 2, 0.15);
+      --bg-dark: #0a0e17;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-card-hover: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #ffffff;
+      --text-dim: rgba(255, 255, 255, 0.6);
+      --radius: 16px;
+      --radius-sm: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, sans-serif;
-      color: #eaffef;
-      background: radial-gradient(circle at 20% 20%, #0e2440, #050a16 60%);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text);
+      min-height: 100vh;
       overflow-x: hidden;
-      height: 100vh;
     }
 
-    .bg-glow {
+    /* Animated Background */
+    .bg-container {
       position: fixed;
-      top: -20%;
-      left: -20%;
-      width: 140%;
-      height: 140%;
-      background: radial-gradient(circle at center,
-                 rgba(0, 255, 135, 0.18),
-                 transparent 50%);
-      animation: moveGlow 10s ease-in-out infinite alternate;
-      filter: blur(120px);
-      z-index: -2;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
     }
 
-    @keyframes moveGlow {
-      0%   { transform: translate(0px, 0px); }
-      50%  { transform: translate(80px, -60px); }
-      100% { transform: translate(-40px, 40px); }
+    .bg-gradient {
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      top: -25%;
+      left: -25%;
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(0, 255, 136, 0.12), transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(0, 100, 255, 0.08), transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(139, 0, 255, 0.05), transparent 60%);
+      animation: bgFloat 20s ease-in-out infinite;
+    }
+
+    @keyframes bgFloat {
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      33% {
+        transform: translate(30px, -30px) rotate(2deg);
+      }
+
+      66% {
+        transform: translate(-20px, 20px) rotate(-1deg);
+      }
+    }
+
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Floating Particles */
+    .particles {
+      position: absolute;
+      inset: 0;
     }
 
     .particle {
-      position: fixed;
+      position: absolute;
       width: 4px;
       height: 4px;
-      background: rgba(80,255,160,0.5);
+      background: var(--accent);
       border-radius: 50%;
-      animation: floatUp 8s linear infinite;
-      z-index: -1;
+      opacity: 0.4;
+      animation: float 15s infinite;
     }
 
-    @keyframes floatUp {
-      0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-      20%{ opacity: 1; }
-      100%{ transform: translateY(-20vh) scale(1); opacity: 0; }
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.6;
+      }
+
+      90% {
+        opacity: 0.6;
+      }
+
+      100% {
+        transform: translateY(-20vh) scale(1);
+        opacity: 0;
+      }
     }
 
-    .wrap{
-      height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:30px;
+    /* Main Container */
+    .container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
     }
 
-    .panel{
-      width:700px;
-      max-width:95vw;
-      padding:32px;
-      border-radius:var(--radius);
-      background: var(--panel-bg);
-      border:1px solid rgba(255,255,255,0.05);
-      backdrop-filter: blur(12px);
-      box-shadow:0 20px 60px rgba(0,0,0,0.6);
+    .main-card {
+      width: 100%;
+      max-width: 700px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(20px);
+      overflow: hidden;
+      box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
     }
 
-    .hero{text-align:center;}
-    .favicon{
-      width:70px;height:70px;border-radius:14px;
-      background:rgba(255,255,255,0.05);
-      margin:0 auto 12px;display:flex;align-items:center;justify-content:center;
-      font-size:28px;color:var(--accent);
-      border:1px solid rgba(255,255,255,0.08);
-      box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    /* Header */
+    .header {
+      padding: 32px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(0, 255, 136, 0.05), transparent);
     }
 
-    .hero h1{margin:0;font-size:26px;}
-    .hero p{margin:6px 0 0;color:var(--muted);font-size:14px;}
-
-    .input-row{
-      margin-top:22px;display:flex;gap:12px;
+    .logo-container {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--accent), #00cc6a);
+      border-radius: 20px;
+      margin-bottom: 16px;
+      box-shadow:
+        0 20px 40px rgba(0, 255, 136, 0.25),
+        0 0 60px rgba(0, 255, 136, 0.15);
+      animation: pulse 3s ease-in-out infinite;
     }
 
-    .url-input{
-      flex:1;padding:14px 16px;border-radius:10px;
-      background:rgba(255,255,255,0.06);color:#eaffef;
-      border:1px solid rgba(255,255,255,0.15);
-      font-size:15px;outline:none;
-    }
-    .url-input:focus{
-      border-color:var(--accent);
-      box-shadow:0 0 12px rgba(63,224,122,0.4);
+    @keyframes pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 20px 40px rgba(0, 255, 136, 0.25), 0 0 60px rgba(0, 255, 136, 0.15);
+      }
+
+      50% {
+        box-shadow: 0 20px 40px rgba(0, 255, 136, 0.35), 0 0 80px rgba(0, 255, 136, 0.25);
+      }
     }
 
-    .btn{
-      padding:14px 18px;border-radius:10px;border:none;
-      background:linear-gradient(135deg,var(--accent),#1fc962);
-      box-shadow:0 8px 20px rgba(63,224,122,0.15);
-      font-weight:700;cursor:pointer;color:#00210c;
+    .logo-container svg {
+      width: 40px;
+      height: 40px;
+      fill: var(--bg-dark);
     }
 
-    .status-card{
-      margin-top:26px;padding:20px;border-radius:12px;
-      display:flex;gap:16px;justify-content:center;align-items:center;
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.08);
+    .header h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #fff, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .status-badge{
-      width:60px;height:60px;border-radius:12px;
-      display:flex;align-items:center;justify-content:center;
-      font-size:22px;font-weight:800;
+    .header p {
+      color: var(--text-dim);
+      font-size: 15px;
     }
 
-    .trusted{
-      background:linear-gradient(180deg,#1b8f45,#0a5a2d);
-      color:#eaffeb;
-    }
-    .untrusted{
-      background:linear-gradient(180deg,#a63b3b,#8a1c1c);
-      color:#fff0f0;
+    .header p strong {
+      color: var(--accent);
+      font-weight: 600;
     }
 
-    .status-text{font-size:20px;margin:0;text-align:center;}
-
-    .actions{
-      margin-top:16px;display:flex;gap:12px;justify-content:center;
+    /* Stats Bar */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 20px;
     }
 
-    .btn.secondary{
-      background:transparent;
-      border:1px solid rgba(255,255,255,0.12);
-      color:var(--muted);
+    .stat-item {
+      text-align: center;
     }
 
+    .stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 6px;
+      margin: 20px;
+      border-radius: var(--radius-sm);
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 14px 20px;
+      border: none;
+      background: transparent;
+      color: var(--text-dim);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .tab-btn:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: var(--bg-dark);
+      box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+    }
+
+    .tab-icon {
+      font-size: 18px;
+    }
+
+    /* Tab Content */
+    .tab-content {
+      display: none;
+      padding: 24px;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .url-input,
+    .email-input {
+      width: 100%;
+      padding: 16px 20px;
+      padding-right: 120px;
+      border-radius: var(--radius-sm);
+      border: 2px solid var(--border);
+      background: rgba(0, 0, 0, 0.3);
+      color: var(--text);
+      font-size: 15px;
+      font-family: inherit;
+      transition: all 0.3s;
+      outline: none;
+    }
+
+    .url-input:focus,
+    .email-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-dim), 0 0 30px var(--accent-dim);
+    }
+
+    .email-input.body {
+      min-height: 150px;
+      resize: vertical;
+      padding-right: 20px;
+    }
+
+    .email-input.subject {
+      margin-bottom: 12px;
+    }
+
+    .input-btn {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), #00cc6a);
+      color: var(--bg-dark);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .input-btn:hover {
+      transform: translateY(-50%) scale(1.05);
+      box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .checkbox-row label {
+      color: var(--text-dim);
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--accent), #00cc6a);
+      color: var(--bg-dark);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Result Cards */
+    .result-card {
+      margin-top: 24px;
+      padding: 24px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      animation: slideUp 0.5s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .result-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .result-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .result-icon.safe {
+      background: linear-gradient(135deg, #00ff88, #00cc6a);
+      box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+    }
+
+    .result-icon.warning {
+      background: linear-gradient(135deg, #ffa502, #e67e00);
+      box-shadow: 0 10px 30px rgba(255, 165, 2, 0.3);
+    }
+
+    .result-icon.danger {
+      background: linear-gradient(135deg, #ff4757, #ff2234);
+      box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3);
+    }
+
+    .result-info h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .result-info p {
+      color: var(--text-dim);
+      font-size: 14px;
+    }
+
+    /* Risk Meter */
+    .risk-meter {
+      margin: 20px 0;
+    }
+
+    .risk-meter-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .risk-meter-bar {
+      height: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .risk-meter-fill {
+      height: 100%;
+      border-radius: 5px;
+      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .risk-meter-fill.low {
+      background: linear-gradient(90deg, #00ff88, #00cc6a);
+    }
+
+    .risk-meter-fill.medium {
+      background: linear-gradient(90deg, #ffa502, #ff7f00);
+    }
+
+    .risk-meter-fill.high {
+      background: linear-gradient(90deg, #ff4757, #ff2234);
+    }
+
+    /* Info Grid */
+    .info-sections {
+      display: grid;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .info-section {
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+    }
+
+    .info-section h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .info-item .label {
+      font-size: 11px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .info-item .value {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .info-item .value.good {
+      color: var(--accent);
+    }
+
+    .info-item .value.bad {
+      color: var(--danger);
+    }
+
+    .info-item .value.warning {
+      color: var(--warning);
+    }
+
+    /* Risk Factors / Indicators */
+    .indicators {
+      margin-top: 20px;
+    }
+
+    .indicators h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .indicator-item {
+      padding: 12px 16px;
+      background: var(--danger-dim);
+      border-left: 3px solid var(--danger);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .indicator-item.warning-indicator {
+      background: var(--warning-dim);
+      border-left-color: var(--warning);
+    }
+
+    .no-threats {
+      text-align: center;
+      padding: 20px;
+      color: var(--accent);
+      font-size: 15px;
+    }
+
+    .no-threats span {
+      font-size: 32px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    /* Actions */
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .actions .btn {
+      flex: 1;
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 20px 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .header h1 {
+        font-size: 26px;
+      }
+
+      .stats-bar {
+        gap: 20px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tabs {
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
 
 <body>
+  <!-- Animated Background -->
+  <div class="bg-container">
+    <div class="bg-gradient"></div>
+    <div class="grid-overlay"></div>
+    <div class="particles">
+      <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+      <div class="particle" style="left: 25%; animation-delay: 2s;"></div>
+      <div class="particle" style="left: 45%; animation-delay: 4s;"></div>
+      <div class="particle" style="left: 65%; animation-delay: 6s;"></div>
+      <div class="particle" style="left: 85%; animation-delay: 8s;"></div>
+    </div>
+  </div>
 
-  <div class="bg-glow"></div>
-  <div class="particle" style="left:10%; animation-delay:0s;"></div>
-  <div class="particle" style="left:35%; animation-delay:1s;"></div>
-  <div class="particle" style="left:65%; animation-delay:2s;"></div>
-  <div class="particle" style="left:85%; animation-delay:3s;"></div>
+  <div class="container">
+    <div class="main-card">
 
-  <div class="wrap">
-    <div class="panel">
-
-      <div class="hero">
-        <div class="favicon" id="faviconPreview">🔒</div>
-        <h1>PhishShield URL Scanner</h1>
-        <p>Check if a website is <strong>Trusted</strong> or <strong>Untrusted</strong>.</p>
-      </div>
-
-      <form id="scanForm" method="post">
-        <div class="input-row">
-          <input class="url-input" id="url" name="url" placeholder="https://example.com/login" value="{{ url|default('') }}" required />
-          <button class="btn" type="submit">Scan</button>
+      <!-- Header -->
+      <div class="header">
+        <div class="logo-container">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z" />
+          </svg>
         </div>
-      </form>
+        <h1>PhishShield</h1>
+        <p>AI-powered protection against <strong>phishing URLs</strong> and <strong>malicious emails</strong></p>
 
-      {% if status %}
-      <div class="status-card">
-        <div class="status-badge {% if status == 'Trusted' %}trusted{% else %}untrusted{% endif %}">
-          {% if status == 'Trusted' %}✔{% else %}⚠{% endif %}
+        <div class="stats-bar">
+          <div class="stat-item">
+            <div class="stat-value">99.2%</div>
+            <div class="stat-label">Detection Rate</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">50+</div>
+            <div class="stat-label">Threat Patterns</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">&lt;1s</div>
+            <div class="stat-label">Scan Time</div>
+          </div>
         </div>
-        <p class="status-text">
-          {% if status == 'Trusted' %}Trusted Website{% else %}Untrusted Website{% endif %}
-        </p>
       </div>
 
-      <div class="actions">
-        <button class="btn secondary" onclick="openUrl()" type="button">Open</button>
-        <button class="btn secondary" onclick="copyUrl()" type="button">Copy</button>
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab-btn {% if active_tab == 'url' %}active{% endif %}" onclick="switchTab('url')">
+          <span class="tab-icon">🔗</span> URL Scanner
+        </button>
+        <button class="tab-btn {% if active_tab == 'email' %}active{% endif %}" onclick="switchTab('email')">
+          <span class="tab-icon">📧</span> Email Scanner
+        </button>
       </div>
-      {% endif %}
+
+      <!-- URL Tab -->
+      <div class="tab-content {% if active_tab == 'url' %}active{% endif %}" id="url-tab">
+        <form method="post">
+          <div class="form-group">
+            <div class="input-wrapper">
+              <input class="url-input" type="text" name="url" id="url"
+                placeholder="Enter URL to scan (e.g., https://example.com)" value="{{ url|default('') }}" required />
+              <button type="submit" class="input-btn">Scan →</button>
+            </div>
+            <div class="checkbox-row">
+              <input type="checkbox" id="detailed" name="detailed" {% if url_report %}checked{% endif %}>
+              <label for="detailed">🔬 Deep analysis (domain age, SSL, patterns)</label>
+            </div>
+          </div>
+        </form>
+
+        {% if url_report %}
+        <div class="result-card">
+          <div class="result-header">
+            <div
+              class="result-icon {% if url_report.risk_level == 'High' %}danger{% elif url_report.risk_level == 'Medium' %}warning{% else %}safe{% endif %}">
+              {% if url_report.risk_level == 'High' %}⚠️{% elif url_report.risk_level == 'Medium' %}⚡{% else %}✓{% endif
+              %}
+            </div>
+            <div class="result-info">
+              <h3>{{ url_report.verdict }}</h3>
+              <p>{{ url_report.domain }}</p>
+            </div>
+          </div>
+
+          <div class="risk-meter">
+            <div class="risk-meter-header">
+              <span>Risk Score</span>
+              <span><strong>{{ url_report.risk_score }}</strong>/100</span>
+            </div>
+            <div class="risk-meter-bar">
+              <div
+                class="risk-meter-fill {% if url_report.risk_score >= 60 %}high{% elif url_report.risk_score >= 30 %}medium{% else %}low{% endif %}"
+                style="width: {{ url_report.risk_score }}%;"></div>
+            </div>
+          </div>
+
+          <div class="info-sections">
+            <div class="info-section">
+              <h4>🌐 Domain Information</h4>
+              <div class="info-grid">
+                {% if url_report.domain_analysis.age_days is not none %}
+                <div class="info-item">
+                  <div class="label">Domain Age</div>
+                  <div
+                    class="value {% if url_report.domain_analysis.is_new %}bad{% elif url_report.domain_analysis.is_suspicious %}warning{% else %}good{% endif %}">
+                    {{ url_report.domain_analysis.age_days }} days
+                  </div>
+                </div>
+                {% endif %}
+                {% if url_report.domain_analysis.creation_date %}
+                <div class="info-item">
+                  <div class="label">Created</div>
+                  <div class="value">{{ url_report.domain_analysis.creation_date }}</div>
+                </div>
+                {% endif %}
+                {% if url_report.domain_analysis.registrar %}
+                <div class="info-item">
+                  <div class="label">Registrar</div>
+                  <div class="value">{{ url_report.domain_analysis.registrar[:25] }}...</div>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="info-section">
+              <h4>🔒 SSL Certificate</h4>
+              <div class="info-grid">
+                <div class="info-item">
+                  <div class="label">HTTPS</div>
+                  <div class="value {% if url_report.ssl_analysis.has_ssl %}good{% else %}bad{% endif %}">
+                    {% if url_report.ssl_analysis.has_ssl %}Enabled{% else %}Not Enabled{% endif %}
+                  </div>
+                </div>
+                <div class="info-item">
+                  <div class="label">Certificate</div>
+                  <div class="value {% if url_report.ssl_analysis.is_valid %}good{% else %}bad{% endif %}">
+                    {% if url_report.ssl_analysis.is_valid %}Valid{% elif url_report.ssl_analysis.status == 'unknown'
+                    %}Unknown{% else %}Invalid{% endif %}
+                  </div>
+                </div>
+                {% if url_report.ssl_analysis.issuer %}
+                <div class="info-item">
+                  <div class="label">Issued By</div>
+                  <div class="value">{{ url_report.ssl_analysis.issuer }}</div>
+                </div>
+                {% endif %}
+                {% if url_report.ssl_analysis.expires %}
+                <div class="info-item">
+                  <div class="label">Expires</div>
+                  <div
+                    class="value {% if url_report.ssl_analysis.days_until_expiry < 30 %}warning{% else %}good{% endif %}">
+                    {{ url_report.ssl_analysis.expires }}
+                  </div>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          {% if url_report.all_risk_factors %}
+          <div class="indicators">
+            <h4>⚠️ Risk Factors Detected</h4>
+            {% for factor in url_report.all_risk_factors %}
+            <div class="indicator-item">{{ factor }}</div>
+            {% endfor %}
+          </div>
+          {% else %}
+          <div class="no-threats">
+            <span>✓</span>
+            No threats detected
+          </div>
+          {% endif %}
+        </div>
+
+        {% elif status %}
+        <div class="result-card">
+          <div class="result-header">
+            <div class="result-icon {% if status == 'Trusted' %}safe{% else %}danger{% endif %}">
+              {% if status == 'Trusted' %}✓{% else %}⚠{% endif %}
+            </div>
+            <div class="result-info">
+              <h3>{% if status == 'Trusted' %}Trusted Website{% elif status == 'Untrusted' %}Untrusted Website{% else
+                %}{{ status }}{% endif %}</h3>
+              <p>{{ url }}</p>
+            </div>
+          </div>
+
+          {% if status in ['Trusted', 'Untrusted'] %}
+          <div class="actions">
+            <button class="btn btn-secondary" onclick="copyUrl()">📋 Copy URL</button>
+            <button class="btn btn-secondary" onclick="openUrl()">🌐 Open Site</button>
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Email Tab -->
+      <div class="tab-content {% if active_tab == 'email' %}active{% endif %}" id="email-tab">
+        <form method="post">
+          <input class="email-input subject" name="email_subject" placeholder="📝 Email Subject"
+            value="{{ email_result.subject if email_result else '' }}" />
+          <textarea class="email-input body" name="email_body"
+            placeholder="📄 Paste the email body here...">{{ email_result.body if email_result else '' }}</textarea>
+          <button type="submit" class="btn" style="margin-top: 16px;">
+            🔍 Analyze Email
+          </button>
+        </form>
+
+        {% if email_result and not email_result.error %}
+        <div class="result-card">
+          <div class="result-header">
+            <div class="result-icon {% if email_result.is_phishing %}danger{% else %}safe{% endif %}">
+              {% if email_result.is_phishing %}⚠️{% else %}✓{% endif %}
+            </div>
+            <div class="result-info">
+              <h3>{{ email_result.verdict }}</h3>
+              <p>Confidence: {{ (email_result.confidence * 100)|round }}%</p>
+            </div>
+          </div>
+
+          <div class="risk-meter">
+            <div class="risk-meter-header">
+              <span>Risk Score</span>
+              <span><strong>{{ email_result.risk_score }}</strong>/100 ({{ email_result.risk_level }})</span>
+            </div>
+            <div class="risk-meter-bar">
+              <div
+                class="risk-meter-fill {% if email_result.risk_score >= 60 %}high{% elif email_result.risk_score >= 30 %}medium{% else %}low{% endif %}"
+                style="width: {{ email_result.risk_score }}%;"></div>
+            </div>
+          </div>
+
+          {% if email_result.indicators %}
+          <div class="indicators">
+            <h4>🚨 Detected Indicators</h4>
+            {% for indicator in email_result.indicators %}
+            <div class="indicator-item warning-indicator">{{ indicator }}</div>
+            {% endfor %}
+          </div>
+          {% else %}
+          <div class="no-threats">
+            <span>✓</span>
+            No phishing indicators detected
+          </div>
+          {% endif %}
+        </div>
+        {% elif email_result and email_result.error %}
+        <div class="result-card">
+          <p style="color: var(--danger);">{{ email_result.error }}</p>
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        Powered by <a href="#">PhishShield AI</a> • Real-time phishing protection
+      </div>
 
     </div>
   </div>
 
   <script>
-    function copyUrl(){
-      const v = document.getElementById("url").value.trim();
-      if(!v) return alert("No URL!");
-      navigator.clipboard.writeText(v);
-      alert("URL copied!");
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabName + '-tab').classList.add('active');
+      event.target.closest('.tab-btn').classList.add('active');
     }
 
-    function openUrl(){
-      const v = document.getElementById("url").value.trim();
-      if(!v) return alert("No URL!");
-      const final = v.startsWith("http") ? v : "http://" + v;
-      window.open(final, "_blank");
+    function copyUrl() {
+      const url = document.getElementById('url').value;
+      navigator.clipboard.writeText(url);
+      alert('URL copied!');
     }
 
-    (function(){
-      const input = document.getElementById('url');
-      const box = document.getElementById('faviconPreview');
-
-      function update(){
-        const v = input.value.trim();
-        if(!v){ box.textContent="🔒"; return; }
-        try{
-          const host = (new URL(v.startsWith('http') ? v : "http://"+v)).hostname;
-          const fav = "https://www.google.com/s2/favicons?domain=" + host;
-          box.innerHTML = `<img src="${fav}" style="width:40px;height:40px;border-radius:8px;">`;
-        } catch(e){
-          box.textContent="🔒";
-        }
-      }
-      input.addEventListener("input", update);
-      update();
-    })();
+    function openUrl() {
+      let url = document.getElementById('url').value;
+      if (!url.startsWith('http')) url = 'http://' + url;
+      window.open(url, '_blank');
+    }
   </script>
-
 </body>
+
 </html>

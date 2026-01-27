@@ -1,0 +1,196 @@
+subject,body,label,spf_pass,dkim_pass,dmarc_pass,sender_domain_match
+Your account has been compromised,Dear Customer We have detected suspicious activity on your account. Your account has been temporarily locked for security reasons. Please click the link below to verify your identity and restore access immediately. Failure to do so within 24 hours will result in permanent account closure.,1,0,0,0,0
+URGENT: Password Reset Required,Your password will expire in 2 hours. You must reset your password immediately to avoid losing access to your account. Click here to reset your credentials now.,1,0,0,0,0
+You have Won $1000000!,Congratulations! You have been selected as the winner of our international lottery. To claim your prize of $1000000 please provide your bank details and social security number. Reply immediately!,1,0,0,0,0
+Verify Your PayPal Account,Dear PayPal User We noticed unusual sign-in activity on your account. Please verify your information by clicking the link below or your account will be suspended within 24 hours.,1,0,0,0,0
+Apple ID Locked - Action Required,Your Apple ID has been locked due to suspicious activity. To unlock your account verify your identity immediately by clicking the secure link provided.,1,0,0,0,0
+Netflix Payment Failed,Your Netflix subscription payment has failed. Update your payment information within 24 hours or your account will be cancelled permanently.,1,0,1,0,0
+Amazon Order Confirmation,Your order for iPhone 15 Pro ($1299) has been shipped. If you did not make this purchase click here immediately to cancel and get a refund.,1,1,0,0,0
+IRS Tax Refund Notification,You are eligible for a tax refund of $3247.00. To receive your refund please verify your social security number and banking information immediately.,1,0,0,0,0
+Microsoft Account Suspended,Your Microsoft account has been suspended due to violation of terms of service. Appeal within 48 hours or your data will be permanently deleted.,1,0,0,0,0
+Bank of America Security Alert,We detected unauthorized access to your Bank of America account. Please verify your account immediately by clicking below or it will be frozen.,1,0,0,0,0
+Google Account Recovery,Someone is trying to access your Google account from an unknown location. Secure your account now by verifying your identity with the link provided.,1,0,0,0,0
+WhatsApp Verification Code,Your WhatsApp verification code is 847291. If you did not request this code your account may be compromised. Secure it now by clicking here.,1,0,0,0,0
+Instagram Password Reset,A password reset was requested for your Instagram account. If this was not you your account is at risk. Click to secure your account now.,1,0,0,0,0
+LinkedIn Profile Viewed by CEO,A CEO at a Fortune 500 company viewed your profile 5 times. Upgrade to Premium now to see who is interested in you professionally.,1,1,0,0,0
+Dropbox Storage Full - Upgrade Now,Your Dropbox is 99% full. Files will be automatically deleted in 24 hours unless you upgrade your storage plan immediately.,1,0,0,0,0
+Chase Bank Fraud Alert,Suspicious transaction detected: $4500 withdrawal from unknown ATM. If this was unauthorized click immediately to block your card.,1,0,0,0,0
+Facebook Account Disabled,Your Facebook account has been disabled for violating community standards. You have 24 hours to submit an appeal or your account will be permanently deleted.,1,0,0,0,0
+DHL Package Delivery Failed,Your package could not be delivered due to incomplete address. Pay the $2.99 redelivery fee to reschedule delivery within 48 hours.,1,0,0,0,0
+Walmart Gift Card Winner,You have been randomly selected to receive a $500 Walmart gift card! Claim your prize within 24 hours before it expires.,1,0,0,0,0
+Zoom Meeting Recording Available,Your recorded Zoom meeting from yesterday is ready for download. Click here to access the recording before it expires in 24 hours.,1,1,0,0,0
+DocuSign Document Requires Signature,An important document is waiting for your signature. This document will expire if not signed within 24 hours. Review and sign now.,1,0,0,0,0
+Venmo Payment Received - Verify,You have received $850 on Venmo from an unknown sender. Verify your identity to claim this payment before it is returned.,1,0,0,0,0
+Steam Account Hacked Warning,Your Steam account shows signs of unauthorized access. Multiple login attempts detected. Secure your account immediately.,1,0,0,0,0
+Costco Customer Survey Reward,Complete our 2-minute customer satisfaction survey and receive a $50 Costco reward. Limited time offer expires today.,1,0,0,0,0
+FedEx Shipment On Hold,Your FedEx international package requires customs payment of $5.50. Pay now to release your shipment from customs hold.,1,0,0,0,0
+Twitter Blue Free Trial,Claim your exclusive free Twitter Blue trial. Limited spots available. This offer expires in 12 hours.,1,0,0,0,0
+Best Buy Order Cancelled,Your Best Buy order #88745 for MacBook Pro was cancelled. If this is an error click here to restore your order immediately.,1,0,0,0,0
+AT&T Bill Payment Failed,Your AT&T wireless bill payment has failed. Your service will be suspended within 24 hours unless payment is received.,1,0,0,0,0
+Crypto Wallet Security Alert,Someone accessed your cryptocurrency wallet from an unknown device in Russia. Secure your assets immediately.,1,0,0,0,0
+Target RedCard Suspended,Your Target RedCard has been suspended due to suspicious activity. Verify your identity to reactivate your card benefits.,1,0,0,0,0
+Adobe License Expiring Today,Your Adobe Creative Cloud license expires today. Renew now with an exclusive 50% discount before losing access to all apps.,1,1,0,0,0
+Uber Account Deactivated,Your Uber account has been deactivated for safety reasons. Submit an appeal within 48 hours to restore your account.,1,0,0,0,0
+eBay Outbid Notification,You have been outbid on iPhone 15 Pro Max. The auction ends in 2 hours. Increase your bid now or lose this item.,1,0,0,0,0
+T-Mobile Security Breach Notice,Your T-Mobile account data may have been exposed in a security incident. Secure your account and change your password now.,1,0,0,0,0
+Spotify Premium Free 3 Months,Get 3 months of Spotify Premium completely free. Exclusive offer for selected users only. Claim your trial now.,1,0,0,0,0
+CVS Pharmacy Prescription Alert,Your prescription is ready but we need to verify your payment information before release. Click to verify and pickup today.,1,0,0,0,0
+Southwest Airlines Free Flight,Congratulations! You have won a free round-trip Southwest Airlines flight. Claim your prize within 24 hours.,1,0,0,0,0
+Wells Fargo Unusual Activity,Multiple failed login attempts have been detected on your Wells Fargo account. Verify your identity to prevent lockout.,1,0,0,0,0
+Slack Workspace Security,You have been invited to join a confidential Slack workspace. Accept this invitation before it expires in 24 hours.,1,1,0,0,0
+Coinbase Withdrawal Alert,An unusual withdrawal of 2.5 BTC was initiated from your Coinbase account. If unauthorized click to stop this transaction.,1,0,0,0,0
+Pinterest Account Recovery,Your Pinterest password was reset from an unknown device. If you did not do this secure your account immediately.,1,0,0,0,0
+Home Depot Delivery Problem,Your Home Depot order delivery requires address confirmation. Confirm your address to ensure successful delivery.,1,0,0,0,0
+Verizon Account Verification,Verify your Verizon Wireless account to prevent service interruption. Complete verification within 24 hours.,1,0,0,0,0
+TikTok Creator Fund Payout,Your TikTok Creator Fund payout of $1250 is ready for withdrawal. Verify your payment method to receive your earnings.,1,0,0,0,0
+Delta SkyMiles Expiring Soon,Your 45000 Delta SkyMiles are set to expire in 7 days. Redeem them now before they are permanently forfeited.,1,0,0,0,0
+Grubhub Suspicious Order,An order was placed from your Grubhub account for $156. If you did not place this order cancel it immediately.,1,0,0,0,0
+Binance New Device Login,A new device logged into your Binance account from Vietnam. If this was not you secure your account and assets now.,1,0,0,0,0
+Zelle Payment Pending Approval,A $2500 Zelle payment is pending your approval. Accept this payment before it expires and is returned to sender.,1,0,0,0,0
+Reddit Account Suspended,Your Reddit account has been suspended for violating content policy. Submit an appeal within 72 hours to restore access.,1,0,0,0,0
+Discord Nitro Gift,Someone has gifted you 3 months of Discord Nitro! Click here to claim your gift before this link expires.,1,0,0,0,0
+Airbnb Booking Cancelled,Your upcoming Airbnb reservation has been cancelled by the host. Click here to get a full refund and rebook.,1,0,0,0,0
+Cash App Bitcoin Purchase,A Bitcoin purchase of $500 was made from your Cash App account. If unauthorized cancel this transaction now.,1,0,0,0,0
+Hulu Subscription Problem,Your Hulu subscription payment failed and your account is on hold. Update payment to restore your streaming access.,1,0,0,0,0
+GitHub Security Alert,A suspicious commit was pushed to your private repository. Review the changes and secure your account immediately.,1,1,1,0,0
+Lowes Reward Points Alert,Your 5000 Lowes reward points expire at midnight. Redeem them now before they are permanently lost.,1,0,0,0,0
+Twitch Affiliate Earnings,Your Twitch affiliate earnings of $340 are ready for payout. Verify your payment information to receive your money.,1,0,0,0,0
+Robinhood Trading Alert,Unusual trading activity detected on your Robinhood account. Multiple trades executed. Review and confirm these transactions.,1,0,0,0,0
+Snapchat Password Reset,A password reset was requested for your Snapchat account from an iPhone in California. If not you secure your account.,1,0,0,0,0
+Walgreens Photo Order,Your Walgreens photo order is ready but requires payment verification. Verify payment to pickup your photos today.,1,0,0,0,0
+Samsung Account Locked,Your Samsung account was locked after multiple failed login attempts. Verify your identity to unlock your account.,1,0,0,0,0
+Affirm Payment Due Reminder,Your Affirm payment of $125 is due today. Avoid late fees by making your payment now before midnight.,1,0,0,0,0
+Kroger Digital Coupon,Exclusive offer: Claim your $100 Kroger digital coupon. Limited to first 100 customers. Expires in 3 hours.,1,0,0,0,0
+OnlyFans Account Verification,Verify your OnlyFans creator account to continue receiving subscriber payments. Complete verification within 24 hours.,1,0,0,0,0
+Expedia Travel Voucher,You have received a $200 Expedia travel voucher. Use it before expiration to save on your next trip booking.,1,0,0,0,0
+Chipotle Free Burrito Winner,Congratulations! You have won free Chipotle burritos for a year! Claim your prize by providing your details now.,1,0,0,0,0
+Mastercard Fraud Department,A suspicious charge of $3400 was attempted on your Mastercard. If unauthorized click to block your card immediately.,1,0,0,0,0
+Visa Rewards Points,You have 25000 unclaimed Visa reward points worth $250. Redeem them now before they expire at month end.,1,0,0,0,0
+Your iCloud Storage is Full,Your iCloud backup has failed because storage is full. Upgrade your storage plan or your data will not be backed up.,1,0,0,0,0
+HBO Max Password Changed,Your HBO Max account password was changed. If you did not make this change recover your account immediately.,1,0,0,0,0
+Facebook Messenger Request,Someone is trying to send you an important message on Facebook. View the message request before it expires.,1,0,0,0,0
+United Airlines Booking,Flight UA4521 to Miami was booked using your United account. If you did not book this flight cancel immediately.,1,0,0,0,0
+American Express Statement,Your American Express statement shows unusual spending patterns. Review your recent transactions for fraud.,1,0,0,0,0
+Rakuten Cashback Available,You have $156.80 in pending Rakuten cashback. Link your payment method to withdraw your earnings now.,1,0,0,0,0
+Doordash Driver Tip Dispute,A customer has disputed the tip for order #78451. Respond to this dispute within 48 hours to receive your payment.,1,0,0,0,0
+Peacock Premium Discount,Get Peacock Premium for just $0.99 per month. This exclusive offer is only available for the next 6 hours.,1,0,0,0,0
+Craigslist Ad Response,Someone responded to your Craigslist listing with a serious offer. Reply now before they find another seller.,1,0,0,0,0
+Nintendo Account Unauthorized Purchase,An unauthorized purchase of $59.99 was made on your Nintendo account. Dispute this charge if it was not you.,1,0,0,0,0
+Marriott Bonvoy Points Expiring,Your 50000 Marriott Bonvoy points expire in 3 days. Book a stay now to use your points before they disappear.,1,0,0,0,0
+Hilton Honors Reservation,Your Hilton reservation requires credit card verification. Verify your card to confirm your upcoming stay.,1,0,0,0,0
+Subscription Auto-Renewed,$599 was charged to your card for antivirus subscription renewal. If you want to cancel request a refund now.,1,0,0,0,0
+Norton Security Renewal,$349 was charged for your Norton Security 3-year subscription renewal. Cancel and get refund if not authorized.,1,0,0,0,0
+McAfee Invoice,$499 was billed to your account for McAfee Total Protection renewal. Stop payment if this was not authorized.,1,0,0,0,0
+Geek Squad Invoice,Best Buy Geek Squad charged $449.99 for tech support renewal. Cancel this charge if you did not authorize it.,1,0,0,0,0
+Social Security Administration,Your Social Security Number has been suspended due to suspicious activity. Verify your identity to reactivate.,1,0,0,0,0
+DMV License Renewal,Your drivers license expires next week. Renew online immediately to avoid driving with an expired license.,1,0,0,0,0
+Unemployment Benefits,Action required for your unemployment benefits claim. Verify your identity within 48 hours to continue receiving benefits.,1,0,0,0,0
+Medicare Benefits Review,Important changes to your Medicare benefits require your immediate attention. Review and confirm your eligibility now.,1,0,0,0,0
+Student Loan Forgiveness,You qualify for $20000 in student loan forgiveness. Apply now before this limited program closes to new applicants.,1,0,0,0,0
+IRS Audit Notice,Your 2023 tax return has been selected for audit. Respond within 48 hours to avoid penalties and legal action.,1,0,0,0,0
+Court Appearance Required,You have a pending court summons for unpaid fines. View the details and pay online to avoid arrest warrant.,1,0,0,0,0
+Work From Home Job,Earn $500 per day working from home. No experience required. Limited positions available. Apply immediately.,1,0,0,0,0
+Resume Selected,A Fortune 500 company selected your resume for an executive position. Confirm your interview slot today.,1,0,0,0,0
+Inheritance Notification,You have an unclaimed inheritance of $4.5 million from a distant relative. Contact us to claim your funds.,1,0,0,0,0
+Royal Family Request,A member of royal family needs help transferring $10 million. You will receive 30% for your assistance. Urgent.,1,0,0,0,0
+COVID Safety Kit,Free COVID-19 safety kit from the World Health Organization. Claim your free testing kit and masks today.,1,0,0,0,0
+Vaccine Appointment,Your COVID vaccine appointment requires confirmation. Confirm your slot within 24 hours or it will be cancelled.,1,0,0,0,0
+Package at Customs,Your international package is being held at customs. Pay the $12 customs fee to release your package for delivery.,1,0,0,0,0
+Computer Virus Detected,Windows Security detected 47 severe threats on your computer. Call our tech support immediately to remove viruses.,1,0,0,0,0
+Microsoft Tech Support,Microsoft detected critical malware on your PC that is stealing your data. Call our support now to fix this issue.,1,0,0,0,0
+Meeting Notes,Here are the meeting notes you requested from our discussion yesterday. Let me know if you have any questions.,0,1,1,1,1
+Weekly Newsletter January,Hello and welcome to our weekly newsletter with the latest updates from our team. No action required just information.,0,1,1,1,1
+Amazon Order Shipped,Your order 123-4567890 has shipped and will arrive by Friday. Track your package in your Amazon account. Thanks for shopping.,0,1,1,1,1
+Team Lunch Friday,Hi everyone just a reminder that team lunch is this Friday at noon in the main cafeteria. Hope to see everyone there.,0,1,1,1,1
+Project Update Q1,Attached is the Q1 milestone report for your review. Please look it over before our meeting on Monday. Thanks.,0,1,1,1,1
+Happy Birthday Team,Wishing you a wonderful birthday from all of us on the team! Hope you have a great day celebrating with family.,0,1,1,1,1
+Conference Room Booked,Your booking for Conference Room B on February 15th from 2pm to 3pm has been confirmed. See you there.,0,1,1,1,1
+LinkedIn Connection Accepted,John Smith has accepted your LinkedIn connection request. You can now message each other on the platform.,0,1,1,1,1
+New Comment on Document,Sarah left a comment on Budget Report 2025 document. Click to view the comment in Google Docs when convenient.,0,1,1,1,1
+Slack Message Notification,David mentioned you in the general channel asking if you can review the pull request when you get a chance.,0,1,1,1,1
+Flight Itinerary Confirmed,Your flight AA1234 from NYC to LAX on March 10th is confirmed. Online check-in opens 24 hours before departure.,0,1,1,1,1
+Monthly Bank Statement,Your January bank statement is now available. Log in to your secure online banking account to view the details.,0,1,1,1,1
+Dentist Appointment Reminder,This is a friendly reminder of your dentist appointment tomorrow at 10am with Dr Johnson at Main Street Dental.,0,1,1,1,1
+Netflix Subscription Renewed,Your Netflix subscription has been successfully renewed. Your next billing date is February 28th. Enjoy streaming.,0,1,1,1,1
+GitHub Pull Request Review,Review requested on PR 145 for fixing login validation. View the changes on GitHub when you have time.,0,1,1,1,1
+Calendar Invite Weekly Standup,You have been invited to Weekly Standup every Monday at 9am. Accept or decline this recurring meeting invitation.,0,1,1,1,1
+Uber Trip Receipt,Thanks for riding with Uber yesterday. Your trip on Jan 25 cost $12.50. View your receipt in the Uber app.,0,1,1,1,1
+Package Delivered,Your FedEx package was delivered at 2:15 PM today and was left at your front door. Thanks for using FedEx.,0,1,1,1,1
+New Episode Available,A new episode of your favorite show is now streaming on Disney Plus. Start watching anytime you like.,0,1,1,1,1
+Welcome to Our Service,Thank you for signing up for our service. Your account has been created successfully. Welcome aboard.,0,1,1,1,1
+Order Confirmation 87654,Thank you for your order. We are preparing your items and will notify you by email when they have shipped.,0,1,1,1,1
+Password Changed Successfully,Your account password has been changed successfully. If you did not make this change contact our support team.,0,1,1,1,1
+Meeting Rescheduled Notice,The 3pm meeting today has been rescheduled to 4pm. Please update your calendar accordingly. Sorry for any inconvenience.,0,1,1,1,1
+Feedback Request,We would love to hear about your recent experience with our service. Take our quick 2-minute survey if you have time.,0,1,1,1,1
+Invoice January,Attached is your invoice for January services rendered. Payment is due within 30 days of receipt. Thank you.,0,1,1,1,1
+Job Posting Match,A new job matching your saved preferences has been posted. Senior Developer position at Tech Corp in your area.,0,1,1,1,1
+Weather Alert,A winter storm warning is in effect for your area from Tuesday evening through Wednesday afternoon. Stay safe.,0,1,1,1,1
+Spotify Wrapped Ready,Your Spotify Wrapped 2024 playlist is ready. Listen to your personalized collection of top songs from last year.,0,1,1,1,1
+Repository Update,There have been 15 new commits to the main branch in your repository since your last visit. Check them out.,0,1,1,1,1
+Analytics Report Ready,The analytics report you requested has been generated and is ready for download from your dashboard.,0,1,1,1,1
+License Renewal Reminder,Your professional license expires in 60 days. Visit the licensing board website to begin the renewal process.,0,1,1,1,1
+Event Registration Confirmed,You are registered for the Virtual Tech Conference on March 5th. Add the event to your calendar.,0,1,1,1,1
+Referral Bonus Credit,Thanks to your referral of a new customer you have earned a $25 account credit. It has been applied automatically.,0,1,1,1,1
+System Maintenance Notice,Planned system maintenance is scheduled for Sunday 2am to 4am. Brief service interruptions may occur during this time.,0,1,1,1,1
+Work Anniversary,Happy 3-year work anniversary! Thank you for being such a valuable member of our team. We appreciate you.,0,1,1,1,1
+Return Received,We have received your product return for order 45678. Your refund will be processed within 3 to 5 business days.,0,1,1,1,1
+Connection Recommendation,Based on your profile and connections you might know Jane Doe who is a Software Engineer at Google.,0,1,1,1,1
+Monthly Usage Summary,Your January account usage summary is available. You used 50GB of your 100GB storage allocation this month.,0,1,1,1,1
+Support Ticket Created,Your support ticket 12345 has been created. Our team will review and respond within 24 business hours.,0,1,1,1,1
+Performance Review Reminder,Your annual performance review is scheduled for next week. Please complete the self-assessment form beforehand.,0,1,1,1,1
+New Article Published,New article published on Medium titled The Future of AI in 2025 by an author you follow. Read it now.,0,1,1,1,1
+Credit Score Updated,Your credit score has been updated with the latest information. Log in to your account to view your score.,0,1,1,1,1
+Team Building Event,Save the date for our annual team building event on February 25th. More details and activities coming soon.,0,1,1,1,1
+Course Completion Certificate,Congratulations on completing Introduction to Python. Your certificate of completion is ready for download.,0,1,1,1,1
+New Feature Announcement,We have launched dark mode for our application. Try it out in your account settings and let us know what you think.,0,1,1,1,1
+Donation Receipt,Thank you for your generous donation of $50 to the Red Cross. This email serves as your tax receipt.,0,1,1,1,1
+Holiday Office Hours,Our office will be closed December 24 through 26 for the holidays. We will respond to emails on December 27.,0,1,1,1,1
+Library Book Due,Your library book titled Clean Code is due in 3 days. Renew it online or return it to any library branch.,0,1,1,1,1
+Gym Membership Renewed,Your gym membership has been renewed for another year. Your new member card is ready for pickup at the front desk.,0,1,1,1,1
+Product Review Published,Someone left a 5-star review on your product stating it was exactly as described. View it on your seller dashboard.,0,1,1,1,1
+Privacy Policy Update,We have updated our privacy policy with some minor changes. Review the updates in your account settings.,0,1,1,1,1
+School Newsletter February,This months school newsletter includes spring break schedule and science fair dates along with PTA meeting updates.,0,1,1,1,1
+Package Out for Delivery,Good news! Your package is out for delivery today and should arrive by 8pm. Watch for the delivery notification.,0,1,1,1,1
+Customer Support Response,Hi and thanks for your patience. Your support issue has been resolved. Please let us know if you need anything else.,0,1,1,1,1
+Apartment Maintenance Notice,Building maintenance for HVAC system inspection is scheduled for Thursday from 9am to 12pm in all units.,0,1,1,1,1
+Audit Trail Export Ready,The audit trail export you requested is ready for download. The download link will expire in 7 days.,0,1,1,1,1
+Recipe of the Week,Try our featured recipe this week called Easy Chicken Stir Fry. It is ready in about 30 minutes.,0,1,1,1,1
+New Podcast Episode,New podcast episode available in your feed titled Tech Talk Episode 45 about The Rise of AI podcasting.,0,1,1,1,1
+Book Review Published,Thank you for reviewing The Great Gatsby on Goodreads. Your review has been published and is now visible.,0,1,1,1,1
+Parking Permit Reminder,Your parking permit expires on March 31. Renew online before February 28 to receive the early renewal discount.,0,1,1,1,1
+Photo Comment Notification,Mike commented on your photo asking where the beautiful sunset photo was taken. View and reply to the comment.,0,1,1,1,1
+Savings Goal Progress,You are 75% of the way to reaching your vacation savings goal. Keep up the excellent progress.,0,1,1,1,1
+Warranty Registered,Your product warranty has been successfully registered. Your coverage is valid until January 2027.,0,1,1,1,1
+Alumni Newsletter Winter,Stay connected with your alma mater through our winter newsletter. Read about exciting campus updates and events.,0,1,1,1,1
+Lab Results Available,Your recent lab test results are now available in your patient portal. All results are within normal ranges.,0,1,1,1,1
+New Twitter Follower,The user techwriter has started following you on Twitter. You now have one new follower.,0,1,1,1,1
+Shipment Tracking Update,Your package is currently in transit and on schedule. Estimated delivery is Wednesday February 5th.,0,1,1,1,1
+Purchase Confirmation,Thank you for your purchase. Order received and confirmed. You will receive a shipping notification when it ships.,0,1,1,1,1
+Birthday Party Invitation,You are invited to Sarah birthday party on February 14th at 7pm. Please RSVP by February 10th.,0,1,1,1,1
+Loan Application Received,We have received your loan application. A representative will contact you within 2 business days to discuss.,0,1,1,1,1
+Podcast Recommendation,Based on your listening history we think you might enjoy the Science Friday podcast. Check it out.,0,1,1,1,1
+Spring Class Schedule,Your spring semester class schedule is now available online. View your enrolled classes and room assignments.,0,1,1,1,1
+Car Service Reminder,Your vehicle is due for its 30000 mile scheduled service. Please schedule an appointment at your convenience.,0,1,1,1,1
+Community Board Post,New posting in your neighborhood community board about free moving boxes available for pickup today only.,0,1,1,1,1
+Subscription Box Shipped,Your February subscription box has shipped. Track your delivery for the estimated arrival date.,0,1,1,1,1
+Art Gallery Opening,You are invited to the art gallery opening reception on February 8th. Complimentary refreshments will be served.,0,1,1,1,1
+Energy Usage Report,Your January energy usage report shows you used 15% less energy than the same month last year. Great job.,0,1,1,1,1
+New Assignment Posted,CSC 301 new assignment Algorithm Analysis has been posted. The assignment is due February 15th.,0,1,1,1,1
+Pet Vaccination Reminder,Buddy the dog is due for annual vaccinations next month. Please schedule an appointment with your veterinarian.,0,1,1,1,1
+Playlist Likes Update,Your Spotify playlist called Workout Hits received 10 new likes this week from other users. Nice work.,0,1,1,1,1
+Volunteer Opportunity,The local food bank needs volunteers this Saturday from 9am to noon. Sign up online if you can help out.,0,1,1,1,1
+Review Helpful Notification,5 people found your product review of Wireless Headphones helpful. Thank you for sharing your experience.,0,1,1,1,1
+Meeting Minutes Available,The meeting minutes from yesterday team meeting have been posted to the shared drive for your reference.,0,1,1,1,1
+Book Club February,The book club selection for February is Project Hail Mary by Andy Weir. Happy reading everyone.,0,1,1,1,1
+Two Factor Authentication,Two factor authentication is now available for your account. Enable it in your security settings for added protection.,0,1,1,1,1
+Plant Watering Reminder,Reminder from your plant care app that your fiddle leaf fig plant is due for watering today.,0,1,1,1,1
+Recipe Saved Successfully,The recipe for Homemade Pizza Dough has been saved to your collection of favorite recipes.,0,1,1,1,1
+Daily News Digest,Here is your daily digest of top news stories from the sources you follow. Enjoy your morning read.,0,1,1,1,1
+Portfolio Performance,Your investment portfolio gained 2.3% this month. View your detailed performance report in the app.,0,1,1,1,1
+Photo Like Notification,Jessica liked your sunset photo that you posted yesterday with the caption about the beautiful evening.,0,1,1,1,1
+Charity Run Registration,You are registered for the 5K charity run on March 15th. Your participant bib number is 4521. Good luck.,0,1,1,1,1
+App Update Available,A new update is available for your mobile app. Update now to get the latest features and bug fixes.,0,1,1,1,1
+Stack Overflow Answer,Your Stack Overflow question about how to center a div in CSS has received a new answer. Check it out.,0,1,1,1,1
+Weekly Productivity Report,This week you completed 8 out of 10 planned tasks. Great productivity. Keep up the good work.,0,1,1,1,1
+Museum Membership Renewal,Your museum membership expires next month. Renew before March 1 to maintain all your member benefits.,0,1,1,1,1
+New WiFi Connection,Your device connected to the Home Network WiFi for the first time. Check your network settings if unexpected.,0,1,1,1,1
