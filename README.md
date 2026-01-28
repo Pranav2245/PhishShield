@@ -66,7 +66,7 @@ python train_email_model.py
 python app.py
 ```
 
-Visit **http://localhost:5000** to access the web interface.
+Visit **http://localhost:8080** to access the web interface.
 
 ---
 
