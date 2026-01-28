@@ -353,6 +353,17 @@ class URLAnalyzer:
             risk_level = 'Low'
             verdict = 'Likely Safe'
         
+        # Elevate to Critical if SSL certificate is invalid
+        if ssl_info.get('is_valid') == False and ssl_info.get('status') in ['invalid_certificate', 'error']:
+            risk_level = 'Critical'
+            verdict = 'Critical'
+        elif ssl_info.get('is_expired'):
+            risk_level = 'Critical'
+            verdict = 'Critical'
+        elif ssl_info.get('is_self_signed'):
+            risk_level = 'Critical'
+            verdict = 'Critical'
+        
         return {
             'url': url,
             'domain': domain,
