@@ -1,7 +1,7 @@
 // content.js - PhishShield Content Script
 // Runs on all websites to scan and highlight suspicious links
 
-const API_BASE = 'http://localhost:5000';
+const API_BASE = 'http://localhost:8080';
 let isScanning = false;
 let scannedLinks = new Map();
 

@@ -1,6 +1,6 @@
 // background.js - PhishShield Service Worker
 
-const API_BASE = 'http://localhost:5000';
+const API_BASE = 'http://localhost:8080';
 
 // Listen for installation
 chrome.runtime.onInstalled.addListener(() => {

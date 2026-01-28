@@ -1,6 +1,6 @@
 // popup.js - PhishShield Extension Popup Logic
 
-const API_BASE = 'http://localhost:5000';
+const API_BASE = 'http://localhost:8080';
 
 // Elements
 let currentUrlEl, scanCurrentBtn, customUrlInput, scanCustomBtn;
@@ -41,7 +41,7 @@ function init() {
   scanCurrentBtn.addEventListener('click', scanCurrentPage);
   scanCustomBtn.addEventListener('click', scanCustomUrl);
   scanLinksBtn.addEventListener('click', scanAllLinks);
-  
+
   customUrlInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') scanCustomUrl();
   });
@@ -62,7 +62,7 @@ async function getCurrentTabUrl() {
 
 async function checkServerStatus() {
   try {
-    const response = await fetch(`${API_BASE}/api/health`, { 
+    const response = await fetch(`${API_BASE}/api/health`, {
       method: 'GET',
       mode: 'cors'
     });
@@ -150,7 +150,7 @@ async function scanAllLinks() {
 
 function showResult(data) {
   resultSection.style.display = 'block';
-  
+
   // Set icon and styling based on risk level
   if (data.risk_level === 'High') {
     resultIcon.textContent = '⚠️';
@@ -165,7 +165,7 @@ function showResult(data) {
     resultIcon.className = 'result-icon safe';
     resultVerdict.textContent = 'Likely Safe';
   }
-  
+
   resultScore.textContent = `Risk Score: ${data.risk_score}/100 (${data.risk_level})`;
 
   // Show risk factors
